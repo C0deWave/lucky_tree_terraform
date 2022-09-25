@@ -26,7 +26,9 @@
            event: pass
            template: success_tagged_deploy_1
    my-job:
-     machine: false
+     machine:
+       image: cimg/base:stable
+       docker_layer_caching: true 
      steps:
       - slack/notify:
           event: fail
