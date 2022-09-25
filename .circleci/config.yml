@@ -9,16 +9,21 @@
         - checkout
         - terraform/init:
             backend: true
+            context: terraform
             backend_config_file: backend.hcl
             path: .
         - terraform/validate:
-            path: .
-        - terraform/fmt:
+            context: terraform
             path: .
         - terraform/plan:
+            context: terraform
+            persist-workspace: true
             backend_config_file: backend.hcl
+            requires:
+            - terraform/init
             path: .
-    working_directory: ~/src
+
+      working_directory: ~/src
    
     deploy:
      docker:
