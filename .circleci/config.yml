@@ -12,7 +12,6 @@
             backend_config_file: backend.hcl
             path: .
         - terraform/validate:
-            context: terraform
             path: .
         - terraform/plan:
             context: terraform
