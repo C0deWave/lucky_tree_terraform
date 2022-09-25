@@ -3,21 +3,21 @@
    slack: circleci/slack@4.1.4
    terraform: circleci/terraform@3.1.0
  jobs:
-  check-terraform-plan:
-    executor: terraform/default
-    steps:
-      - checkout
-      - terraform/init:
-          backend: true
-          backend_config_file: backend.hcl
-          path: .
-      - terraform/validate:
-          path: .
-      - terraform/fmt:
-          path: .
-      - terraform/plan:
-          backend_config_file: backend.hcl
-          path: .
+    check-terraform-plan:
+      executor: terraform/default
+      steps:
+        - checkout
+        - terraform/init:
+            backend: true
+            backend_config_file: backend.hcl
+            path: .
+        - terraform/validate:
+            path: .
+        - terraform/fmt:
+            path: .
+        - terraform/plan:
+            backend_config_file: backend.hcl
+            path: .
     working_directory: ~/src
    
     deploy:
@@ -45,7 +45,7 @@
           context:
             - slack-api
           requires:
-            - test
+            - check-terraform-plan
           filters:
             branches:
               only: 
@@ -54,7 +54,7 @@
        - pause_workflow:
           type: approval
           requires:
-            - test
+            - check-terraform-plan
             - slack/on-hold
           filters:
             branches:
