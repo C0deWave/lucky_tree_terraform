@@ -28,11 +28,13 @@
       - terraform/validate:
           checkout: true
           context: terraform
+          backend_config_file: backend.hcl
           requires:
             - terraform/fmt
       - terraform/plan:
           checkout: true
           context: terraform
+          backend_config_file: backend.hcl
           persist-workspace: true
           requires:
             - terraform/validate
