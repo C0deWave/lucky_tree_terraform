@@ -14,11 +14,7 @@
         - terraform/validate:
             path: .
         - terraform/plan:
-            context: terraform
-            persist-workspace: true
             backend_config_file: backend.hcl
-            requires:
-            - terraform/init
             path: .
 
       working_directory: ~/src
@@ -43,6 +39,7 @@
    test-and-deploy:
      jobs:
        - check-terraform-plan
+          context: terraform
 
        - slack/on-hold:
           context:
