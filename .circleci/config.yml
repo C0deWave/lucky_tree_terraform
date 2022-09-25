@@ -58,11 +58,11 @@
               only: /^v.*/
        # The deploy job will continue once the workflow has been manually approved.
        - deploy:
-          branch_pattern: main 
           context:
             - slack-api
           requires:
             - pause_workflow
           filters:
-            tags:
-              only: /^v.*/
+            branches:
+              only: 
+                - main
