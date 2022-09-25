@@ -48,6 +48,7 @@
        # Jobs with the type of "approval" act as place holders to pause the workflow, the job name does not matter.
        # Wait for both the test job and for the notification to send before pausing.
        - pause_workflow:
+          branch_pattern: main 
           type: approval
           requires:
             - test
@@ -57,6 +58,7 @@
               only: /^v.*/
        # The deploy job will continue once the workflow has been manually approved.
        - deploy:
+          branch_pattern: main 
           context:
             - slack-api
           requires:
