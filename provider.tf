@@ -22,14 +22,14 @@ resource "aws_s3_bucket_versioning" "tfstate_version" {
 # DynamoDB는 NoSQL 형태의 Key:Value 저장소이다.
 # 이를 이용해서 terrafoem-lock 파일을 여기에 설정하자.
 resource "aws_dynamodb_table" "terraform_state_lock" {
-  name = "terraform_state_lock"
-  hash_key = "LockID"
+  name         = "terraform_state_lock"
+  hash_key     = "LockID"
   billing_mode = "PAY_PER_REQUEST"
   attribute {
-    name="LockID"
-    type="S"
+    name = "LockID"
+    type = "S"
   }
-} 
+}
 
 # -----------------------------------------------------------------
 # terraform backend 설정하기
