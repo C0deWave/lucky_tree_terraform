@@ -9,7 +9,6 @@
         - checkout
         - terraform/init:
             backend: true
-            context: terraform
             backend_config_file: backend.hcl
             path: .
         - terraform/validate:
