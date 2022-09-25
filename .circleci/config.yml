@@ -25,18 +25,8 @@
        - slack/notify:
            event: pass
            template: success_tagged_deploy_1
-   my-job:
-     machine:
-       image: cimg/base:stable
-       docker_layer_caching: true 
-     steps:
-      - slack/notify:
-          event: fail
-          mentions: '@Frontend-team'
-          template: basic_fail_1
-      - slack/notify:
-          event: pass
-          template: success_tagged_deploy_1
+
+
  workflows:
    test-and-deploy:
      jobs:
@@ -71,12 +61,3 @@
           filters:
             tags:
               only: /^v.*/
-
-       - my-job:
-          context: 
-            - slack-api
-          requires:
-            - deploy
-          filters:
-            tags:
-              only: \^v.*/
