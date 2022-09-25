@@ -4,7 +4,7 @@ provider "aws" {
 
 # -----------------------------------------------------------------
 # backend 활용하기 : S3에 저장
-# 테스트입니다.
+# 무언가 개발을 하고 있습니다.
 # 인프라 상태 결과값을 저장하는 tfstate 파일을 원격으로 저장합니다.
 resource "aws_s3_bucket" "tfstate" {
   bucket = "lucky-tree-team-tfstate"
