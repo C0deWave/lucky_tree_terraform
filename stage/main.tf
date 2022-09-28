@@ -9,7 +9,7 @@ provider "aws" {
 # terraform init -backend-config=backend.hcl
 terraform {
   backend "s3" {
-    key = "mgmt/bastion/terraform.tfstate"
+    key = "stage/terraform.tfstate"
   }
 }
 
