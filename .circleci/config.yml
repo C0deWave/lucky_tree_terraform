@@ -59,15 +59,12 @@
       #         only: 
       #           - main
 
-      # - deploy:
-      #     context:
-      #       - slack-api
-      #     requires:
-      #       - pause_workflow
-      #     filters:
-      #       branches:
-      #         only: 
-      #           - main
-        - slack/notify:
-           event: pass
-           template: success_tagged_deploy_1
+      - deploy:
+          context:
+            - slack-api
+          #requires:
+          #  - pause_workflow
+          filters:
+            branches:
+              only: 
+               - main
