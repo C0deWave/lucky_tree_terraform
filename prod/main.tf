@@ -14,7 +14,7 @@ terraform {
 }
 
 module "stage_vpc" {
-  source               = "../module/vpc"
+  source               = "github.com/C0deWave/lucky_tree_terraform_module.git//vpc?ref=v0.0.1"
   vpc_cidr             = "10.100.0.0/16"
   vpc_name             = "lucky_tree_proc_vpc"
   public_subnet1_cidr  = "10.100.1.0/24"
