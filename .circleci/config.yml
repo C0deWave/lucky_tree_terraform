@@ -22,49 +22,52 @@
  workflows:
    test-and-deploy:
      jobs:
-      - terraform/fmt:
-          checkout: true
-          context: terraform
-      - terraform/validate:
-          checkout: true
-          context: terraform
-          backend_config_file: backend.hcl
-          requires:
-            - terraform/fmt
-      - terraform/plan:
-          checkout: true
-          context: terraform
-          backend_config_file: backend.hcl
-          persist-workspace: true
-          requires:
-            - terraform/validate
+      # - terraform/fmt:
+      #     checkout: true
+      #     context: terraform
+      # - terraform/validate:
+      #     checkout: true
+      #     context: terraform
+      #     backend_config_file: backend.hcl
+      #     requires:
+      #       - terraform/fmt
+      # - terraform/plan:
+      #     checkout: true
+      #     context: terraform
+      #     backend_config_file: backend.hcl
+      #     persist-workspace: true
+      #     requires:
+      #       - terraform/validate
 
-      - slack/on-hold:
-          context:
-            - slack-api
-          requires:
-            - terraform/plan
-          filters:
-            branches:
-              only: 
-                - main
+      # - slack/on-hold:
+      #     context:
+      #       - slack-api
+      #     requires:
+      #       - terraform/plan
+      #     filters:
+      #       branches:
+      #         only: 
+      #           - main
 
-      - pause_workflow:
-          type: approval
-          requires:
-            - terraform/plan
-            - slack/on-hold
-          filters:
-            branches:
-              only: 
-                - main
+      # - pause_workflow:
+      #     type: approval
+      #     requires:
+      #       - terraform/plan
+      #       - slack/on-hold
+      #     filters:
+      #       branches:
+      #         only: 
+      #           - main
 
-      - deploy:
-          context:
-            - slack-api
-          requires:
-            - pause_workflow
-          filters:
-            branches:
-              only: 
-                - main
+      # - deploy:
+      #     context:
+      #       - slack-api
+      #     requires:
+      #       - pause_workflow
+      #     filters:
+      #       branches:
+      #         only: 
+      #           - main
+        - slack/notify:
+           event: pass
+           template: success_tagged_deploy_1
