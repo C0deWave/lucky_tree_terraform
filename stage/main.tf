@@ -24,3 +24,8 @@ module "stage_vpc" {
   private_subnet2_cidr = "10.0.4.0/24"
   use_nat_gateway      = true
 }
+# resource "aws_instance" "name" {
+#   ami = "ami-0c76973fbe0ee100c"
+#   instance_type = "t2.micro"
+#   subnet_id = module.stage_vpc.public_subnet_id[0]
+# }
