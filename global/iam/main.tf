@@ -44,7 +44,12 @@ module "iam" {
                 "ecr:DescribeImages",
                 "ecr:PutImage",
                 "ecr:GetAuthorizationToken",
-                "ecr:BatchCheckLayerAvailability"]
+                "ecr:BatchCheckLayerAvailability",
+                
+                "ecr:CompleteLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:InitiateLayerUpload",
+                ]
         Resource = ["*"]
         Effect   = "Allow"
       }]
