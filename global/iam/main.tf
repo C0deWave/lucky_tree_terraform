@@ -42,6 +42,7 @@ module "iam" {
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",
                 "ecr:DescribeImages",
+                "ecr:PutImage",
                 "ecr:GetAuthorizationToken",
                 "ecr:BatchCheckLayerAvailability"]
         Resource = ["*"]
