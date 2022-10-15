@@ -32,6 +32,21 @@ module "iam" {
       username        = "라이언"
       is_devops       = false
       user_permission = []
+    },
+    ecr_user = {
+      userid          = "ecr_user"
+      username        = "ecr_user"
+      is_devops       = false
+      user_permission = [{
+        Action   = [
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "ecr:DescribeImages",
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability"]
+        Resource = ["*"]
+        Effect   = "Allow"
+      }]
     }
   }
   devops_group_policy = {
@@ -48,10 +63,10 @@ module "iam" {
     }
   }
   developer_group_policy = {
-    all_permission = {
-      Action   = ["*"]
-      Resource = ["*"]
-      Effect   = "Allow"
-    }
+    # all_permission = {
+    #   Action   = []
+    #   Resource = []
+    #   Effect   = "Allow"
+    # }
   }
 }
