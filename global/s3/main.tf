@@ -9,7 +9,7 @@ provider "aws" {
 # terraform init -backend-config=backend.hcl
 terraform {
   backend "s3" {
-    key = "global/terraform.tfstate"
+    key = "global/s3/terraform.tfstate"
   }
 }
 
